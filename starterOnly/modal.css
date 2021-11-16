@@ -405,11 +405,6 @@ main {
 
 /******* Modal general settings ********/
 
-/* TODO voir si besoin pour le .formData[data-error-visible="true"] */
-
-/* .smFont {
-    font-size: 16px;
-} */
 .modal-body {
     padding: 15px 8%;
     margin: 15px auto;
@@ -487,10 +482,6 @@ input {
     border-radius: 8px;
     font-size: 20px;
     height: 48px;
-}
-
-.formData {
-    margin-top: 20px;
 }
 
 
@@ -572,31 +563,24 @@ input {
 
 .checkbox-label .checkbox-icon::after, .checkbox2-label .checkbox-icon::after {
     content: "";
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
     background-color: #279e7a;
     border-radius: 50%;
     white-space: nowrap;
-    /* TODO trouver un moyen de positionner plus joli */
     position: absolute;
     left: 50%;
     top: 50%;
-    /* TODO pourquoi un transform ici */
     transform: translate(-50%, -50%);
     transition: 0.3s;
     opacity: 0;
 }
 
-/* TODO : voir pouquoi ça ne fonctionne pas */
-/* .checkbox-input:checked+.checkbox-icon::after{
-    color: #279e7a;
+.checkbox-input:checked+.checkbox-label .checkbox-icon {
+    border: 2px solid #279e7a;
 }
-    ou
 
-    .checkbox-input:checked + .checkbox1-label .checkbox-icon {
-    color: #279e7a;
-}
-*/
+
 
 .checkbox-input {
     display: none;

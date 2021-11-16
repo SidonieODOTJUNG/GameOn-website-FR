@@ -50,59 +50,59 @@
         <!-- modal formulaire -->
         <div class="bground">
             <div class="content">
-                <span class="close"></span>
+                <span class="close" onclick="closeModal();"></span>
                 <div class="modal-body">
-                    <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
-                        <div class="formData" data-error-visible="true" data-error="Vous ne connaissez pas votre prénom?">
+                    <form name="reserve" onsubmit="validate(event)">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom.">
                             <label for="first">Prénom</label>
                             <input class="text-control" type="text" id="first" name="first" minlength="2">
                         </div>
 
-                        <div class="formData">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
                             <label for="last">Nom</label>
                             <input type="text" class="text-control" id="last" name="last" minlength="2">
                         </div>
 
-                        <div class="formData">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer une adresse email valide.">
                             <label for="email">E-mail</label>
                             <input class="text-control" type="email" id="email" name="email">
                         </div>
 
-                        <div class="formData">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer une date de naissance respectant le format JJ/MM/AAAA.">
                             <label for="birthdate">Date de naissance</label>
                             <input class="text-control" type="date" id="birthdate" name="birthdate">
                         </div>
 
-                        <div class="formData">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer un nombre valide.">
                             <label for="quantity">&#192; combien de tournois GameOn avez-vous déjà participé ?</label>
                             <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
                         </div>
 
 
 
-                        <div class="formData">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez choisir une ville.">
                             <p class="text-label">Quelles villes ?</p>
 
-                            <input type="radio" class="checkbox-input" id="location1" name="location" value="New York">
+                            <input type="radio" class="checkbox-input checkbox-input-town" id="location1" name="location1" value="New York">
                             <label for="location1" class="checkbox-label"><span class="checkbox-icon"></span>New York</label>
 
-                            <input type="radio" class="checkbox-input" id="location2" name="location" value="San Francisco">
+                            <input type="radio" class="checkbox-input checkbox-input-town" id="location2" name="location2" value="San Francisco">
                             <label for="location2" class="checkbox-label"><span class="checkbox-icon"></span>San Francisco</label>
 
-                            <input type="radio" class="checkbox-input" id="location3" name="location" value="Seattle">
+                            <input type="radio" class="checkbox-input checkbox-input-town" id="location3" name="location3" value="Seattle">
                             <label for="location3" class="checkbox-label"><span class="checkbox-icon"></span>Seattle</label>
 
-                            <input type="radio" class="checkbox-input" id="location4" name="location" value="Chicago">
+                            <input type="radio" class="checkbox-input checkbox-input-town" id="location4" name="location4" value="Chicago">
                             <label  for="location4" class="checkbox-label"><span class="checkbox-icon"></span>Chicago</label>
 
-                            <input type="radio" class="checkbox-input" id="location5" name="location" value="Boston">
+                            <input type="radio" class="checkbox-input checkbox-input-town" id="location5" name="location5" value="Boston">
                             <label for="location5" class="checkbox-label"><span class="checkbox-icon"></span>Boston</label>
 
-                            <input type="radio" class="checkbox-input" id="location6" name="location" value="Portland">
+                            <input type="radio" class="checkbox-input checkbox-input-town" id="location6" name="location6" value="Portland">
                             <label for="location6" class="checkbox-label"><span class="checkbox-icon"></span>Portland</label>
                         </div>
 
-                        <div class="formData">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez accepter les conditions d'utilisations.">
                             <div>
                                 <input type="checkbox" class="checkbox-input"  id="checkbox1" checked required>
                                 <label for="checkbox1" class="checkbox2-label"><span class="checkbox-icon"></span>J'ai lu et accepte les conditions d'utilisation.</label>
@@ -116,6 +116,16 @@
 
                         <input type="submit" class="btn-submit" value="C'est parti">
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal  validation formulaire -->
+        <div class="bground">
+            <div class="content">
+                <span class="close" onclick="closeModal();"></span>
+                <div class="modal-body">
+                    <p>"Merci ! Votre réservation a été reçue."</p>
                 </div>
             </div>
         </div>
