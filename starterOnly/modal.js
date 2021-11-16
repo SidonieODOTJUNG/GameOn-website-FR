@@ -43,7 +43,9 @@ const checkboxInputsTown = document.querySelectorAll(".checkbox-input-town");
 
 // status changed when you click on a radio box to chose your town
 //toggle() change état d'un élément à chaque fois qu'elle est appelée
+
 function toggleCheckbox(checkbox) {
+
     checkbox.addEventListener("click", (e)=>{
            if(e.target.classList.contains("checked")) {
                 e.target.checked = false;
@@ -68,13 +70,17 @@ function checkboxValidate() {
         parent.setAttribute("data-error-visible", "true");
     }else{
         parent.setAttribute("data-error-visible", "false");
+        return true;
     }
 }
 
-// form submit validation 
+// // form submit validation 
 function validate(event) {
     event.preventDefault();
-  
+    if (checkboxValidate() === true) {
+        return replaceTextValidation();
+    }
+
 //   switch (document.getAttribute("id")) {
 //     case 'first' : 
 //       if (input.value.length, 2 === false) {
@@ -82,12 +88,9 @@ function validate(event) {
 //         // empecher la validation du formulaire
 //       }
 //     break;
-//     case 'last' : 
-//     break
-//   }
-
-    let validationInputsTown = checkboxValidate();
-    // console.log(validationInputsTown);
+// //     case 'last' : 
+// //     break
+// //   }
 
 }
 
@@ -99,13 +102,14 @@ function validate(event) {
 /* Validation modal */
 /********************/
 
-// 1. créer la modal en HTML ou replase form par p : "Merci ! Votre réservation a été reçue."
-// 2. lancer la modal au click sur c'est parti
-// 3. créer le processus de fermeture de la modal
-
-// function replaceTextValidation {
-
-// }
-
+function replaceTextValidation() {
+    const p = document.createElement("p");
+    p.innerHTML = "Merci ! Votre réservation a été reçue.";
+    p.classList.add("text-validation");
+    const form = document.getElementById('reserve');
+    const parent = form.parentNode;
+    parent.appendChild(p);   
+    parent.replaceChild(p, form);
+}
 
 

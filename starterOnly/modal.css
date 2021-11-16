@@ -412,7 +412,6 @@ main {
 
 .bground {
     display: none;
-    /* display: block; */
     position: fixed;
     z-index: 1;
     left: 0;
@@ -580,8 +579,6 @@ input {
     border: 2px solid #279e7a;
 }
 
-
-
 .checkbox-input {
     display: none;
 }
@@ -589,8 +586,6 @@ input {
 .checkbox-input:checked + .checkbox-label .checkbox-icon::after, .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
     opacity: 1;
 }
-
-
 
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
     background: #279e7a;
@@ -616,6 +611,15 @@ input {
     top: 19%;
 }
 
+
+/********* Validation message **********/
+
+.text-validation {
+    height: 600px;
+    margin-top: 350px;
+    font-size: 36px;
+    text-align: center;
+}
 
 /***************************************/
 /*************** Footer ****************/
