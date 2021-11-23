@@ -37,14 +37,15 @@ function closeModal() {
 /* Unvalidation input */
 /**********************/
 
-// TODO : voir comment ne pas garder en mémoire les réponses apportées précédement dans le form
-
 const formData = document.querySelectorAll(".formData");
 const checkboxInputsTown = document.querySelectorAll(".checkbox-input-town");
 const inputsNameParents = document.querySelectorAll('.validationName');
 
 // status changed when you click on a radio box to chose your town
 //toggle() change état d'un élément à chaque fois qu'elle est appelée
+
+
+/************* town validation **************/
 
 function toggleCheckbox(checkbox) {
 
@@ -77,70 +78,104 @@ function checkboxValidate() {
 }
 
 
-
-// firstname et lastname validation
-function nameValidate() {
-
-    const inputfirst = document.getElementById('first').value.length;
-    const inputlast = document.getElementById('last').value.length;
-    const parent = document.querySelectorAll(".validationName");
-
-            if (inputfirst < 2) {
-                parent[0].setAttribute("data-error-visible", "true");
-            } else if (inputlast < 2){
-                parent[1].setAttribute("data-error-visible", "true");
-            } else {
-                parent[0].setAttribute("data-error-visible", "false");
-                parent[1].setAttribute("data-error-visible", "false");
-                return true;
-            }
-}
-
-
-// email validation
-
-function mailValidate() {
-    const email = document.getElementById("email");
-    const parent = document.querySelectorAll(".validationMail");
-
-
-    if(!email.validity.valid) {
-        parent[0].setAttribute("data-error-visible", "true");
-        if(email.validity.typeMismatch == true && email.validity.patternMismatch == true ) {
-            debugger
-            parent[0].setAttribute("data-error", "Veuillez entrer une adresse email valide.");
-        } else if(email.validity.valueMissing == true) {
-            parent[0].setAttribute("data-error", "Veuillez entrer une adresse email.");
-        } else {
-            parent[0].setAttribute("data-error-visible", "false");
-        }
+/**** firstname et lastname validation ******/
+function nameParam(name) {
+const parent = name.parentNode;
+const value = name.value;
+    if (value.length < 2) {
+        parent.setAttribute("data-error-visible", "true");
+        return false;
     } else {
-        parent[0].setAttribute("data-error-visible", "false");
+        parent.setAttribute("data-error-visible", "false");
         return true;
     }
+}
+
+function nameFirstValidate() {
+    const inputFirst = document.getElementById('first');
+    return nameParam(inputFirst);
 
 }
 
-// validation date de naissance
-
-function birthdayValidation() {
-    const dateControl = document.querySelector('input[type="date"]');
-
-    dateControl.minValue = '2017-06-01';
-
+function nameLastValidate() {
+    const inputLast = document.getElementById('last');
+    return nameParam(inputLast);
 }
 
 
+/************ email validation **************/
+function mailValidate() {
+    const email = document.getElementById("email");
+    const parent = email.parentNode;
 
-// form submit validation 
+    if(email.validity.valueMissing) {
+        parent.setAttribute("data-error-visible", "true");
+        parent.setAttribute("data-error", "Veuillez entrer une adresse email.");
+        return false;
+    }
+
+    if(email.validity.patternMismatch) {
+        parent.setAttribute("data-error-visible", "true");
+        parent.setAttribute("data-error", "Veuillez entrer une adresse email valide.");
+        return false;
+    } 
+
+    parent.setAttribute("data-error-visible", "false");
+    return true;
+}
+
+
+/********** birthdate validation ************/ 
+function birthdateValidate() {
+    const dateControl = document.getElementById("birthdate");
+    const parent = dateControl.parentNode;
+
+    if (dateControl.value == "") {
+        parent.setAttribute("data-error-visible", "true");
+    } else {
+        parent.setAttribute("data-error-visible", "false");
+        return true;
+    }
+}
+
+
+/********** agreement validation ************/
+function agreementValidate() {
+    const agreementControl = document.getElementById("checkbox1");
+    const parent = agreementControl.parentNode;
+
+    if(!agreementControl.checked) {
+        parent.setAttribute("data-error-visible", "true");
+        return false;
+    } else {
+        parent.setAttribute("data-error-visible", "false");
+        return true;
+    }
+}
+
+
+/********* Competition validation  **********/
+function competitionValidate() {
+    const numberControl = document.getElementById("quantity");
+    const parent = numberControl.parentNode;
+
+    if(numberControl.value == "") {
+        parent.setAttribute("data-error-visible", "true");
+        return false;
+    } else {
+        parent.setAttribute("data-error-visible", "false");
+        return true;
+    }
+}
+
+
+/********* form submit validation  **********/
 function validate(event) {
     event.preventDefault();
-    if (checkboxValidate()==true && nameValidate()==true &&  mailValidate()==true) {
+    if (checkboxValidate()==true && nameFirstValidate()==true && nameLastValidate()==true &&  mailValidate()==true && birthdateValidate()==true && agreementValidate()==true && competitionValidate()==true) {
         return replaceTextValidation();
     }
 }
-
-
 
 
 
@@ -157,5 +192,7 @@ function replaceTextValidation() {
     parent.appendChild(p);   
     parent.replaceChild(p, form);
 }
+
+
 
 

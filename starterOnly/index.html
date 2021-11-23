@@ -53,29 +53,29 @@
                 <span class="close" onclick="closeModal();"></span>
                 <div class="modal-body">
                     <form id="reserve" name="reserve" onsubmit="validate(event)">
-                        <div class="formData validationName" data-error-visible="false" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom.">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom.">
                             <label for="first">Prénom</label>
-                            <input class="text-control" type="text" id="first" name="first" onchange="nameValidate()">
+                            <input class="text-control" type="text" id="first" name="first" oninput="nameFirstValidate()">
                         </div>
 
-                        <div class="formData validationName" data-error-visible="false" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
                             <label for="last">Nom</label>
-                            <input type="text" class="text-control" id="last" name="last" onchange="nameValidate()">
+                            <input type="text" class="text-control" id="last" name="last" oninput="nameLastValidate()">
                         </div>
 
-                        <div class="formData validationMail" data-error-visible="false">
+                        <div class="formData" data-error-visible="false">
                             <label for="email">E-mail</label>
-                            <input class="text-control" type="email" id="email" name="email" placeholder="monmail@exemple.com" onchange="mailValidate()" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required>
+                            <input class="text-control" type="email" id="email" name="email" placeholder="monmail@exemple.com" onchange="mailValidate()" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
                         </div>
 
-                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer une date de naissance respectant le format JJ/MM/AAAA.">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer une date de naissance valide.">
                             <label for="birthdate">Date de naissance</label>
-                            <input class="text-control" type="date" id="birthdate" name="birthdate">
+                            <input class="text-control" type="date" id="birthdate" name="birthdate" onchange="birthdateValidate()" required>
                         </div>
 
-                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer un nombre valide.">
+                        <div class="formData" data-error-visible="false" data-error="Veuillez entrer un nombre.">
                             <label for="quantity">&#192; combien de tournois GameOn avez-vous déjà participé ?</label>
-                            <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                            <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" oninput="competitionValidate()">
                         </div>
 
 
@@ -102,9 +102,9 @@
                             <label for="location6" class="checkbox-label"><span class="checkbox-icon"></span>Portland</label>
                         </div>
 
-                        <div class="formData" data-error-visible="false" data-error="Veuillez accepter les conditions d'utilisations.">
-                            <div>
-                                <input type="checkbox" class="checkbox-input"  id="checkbox1" checked required>
+                        <div>
+                            <div class="formData" data-error-visible="false" data-error="Veuillez accepter les conditions d'utilisations.">
+                                <input type="checkbox" class="checkbox-input"  id="checkbox1" onclick="agreementValidate()" checked required>
                                 <label for="checkbox1" class="checkbox2-label"><span class="checkbox-icon"></span>J'ai lu et accepte les conditions d'utilisation.</label>
                             </div>
                             
