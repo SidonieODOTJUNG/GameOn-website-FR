@@ -159,7 +159,7 @@ function competitionValidate() {
     const numberControl = document.getElementById("quantity");
     const parent = numberControl.parentNode;
 
-    if(numberControl.value == "") {
+    if(!numberControl.value) {
         parent.setAttribute("data-error-visible", "true");
         return false;
     } else {
