@@ -18,6 +18,8 @@ function editNav() {
 
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".btn-signup");
+const form = document.getElementById('reserve');
+const modalBody = document.querySelector(".modal-body");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -25,6 +27,8 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  modalBody.innerText = "";
+  modalBody.appendChild(form);
 }
 
 // close modal form
@@ -185,12 +189,16 @@ function validate(event) {
 
 function replaceTextValidation() {
     const p = document.createElement("p");
+    const input = document.createElement("div");
     p.innerHTML = "Merci ! Votre réservation a été reçue.";
+    input.innerHTML = `<button class="btn-submit" onclick="closeModal()">OK!</button>`;
     p.classList.add("text-validation");
-    const form = document.getElementById('reserve');
+
+    form.reset();
     const parent = form.parentNode;
-    parent.appendChild(p);   
-    parent.replaceChild(p, form);
+    parent.innerText = "";
+    parent.appendChild(p);
+    parent.appendChild(input);   
 }
 
 
